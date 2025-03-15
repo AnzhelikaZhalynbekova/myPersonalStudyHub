@@ -2,6 +2,8 @@ package com.StudyHub.StudyHub.model;
 
 
 import jakarta.persistence.*;
+import java.util.List;
+
 
 //import javax.persistence.*;
 
@@ -20,6 +22,9 @@ public class Material {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @OneToMany(mappedBy = "material")
+    private List<Review> reviews; // Связь с отзывами
+
 
     public Material() {
     }

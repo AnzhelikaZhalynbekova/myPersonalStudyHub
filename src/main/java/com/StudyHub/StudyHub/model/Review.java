@@ -9,7 +9,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String user;
+    private String user_name;
     private String text;
     private int rating;
 
@@ -20,8 +20,8 @@ public class Review {
     public Review() {
     }
 
-    public Review(String user, String text, int rating, Material material) {
-        this.user = user;
+    public Review(String user_name, String text, int rating, Material material) {
+        this.user_name = user_name;
         this.text = text;
         this.rating = rating;
         this.material = material;
@@ -37,11 +37,11 @@ public class Review {
     }
 
     public String getUser() {
-        return user;
+        return user_name;
     }
 
     public void setUser(String user) {
-        this.user = user;
+        this.user_name = user;
     }
 
     public String getText() {

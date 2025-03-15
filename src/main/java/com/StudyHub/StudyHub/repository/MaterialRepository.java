@@ -1,4 +1,9 @@
 package com.StudyHub.StudyHub.repository;
 
-public class MaterialRepository {
+import com.StudyHub.StudyHub.model.Material;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MaterialRepository extends JpaRepository<Material, Long> {
 }
