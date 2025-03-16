@@ -36,11 +36,11 @@ public class Review {
         this.id = id;
     }
 
-    public String getUser() {
+    public String getUsername() {
         return user_name;
     }
 
-    public void setUser(String user) {
+    public void setUsername(String user) {
         this.user_name = user;
     }
 

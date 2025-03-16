@@ -69,11 +69,9 @@ public class Material {
         this.author = author;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
-    }
+    public String getUrl() { return fileUrl; }
 
-    public void setFileUrl(String fileUrl) {
+    public void setUrl(String fileUrl) {
         this.fileUrl = fileUrl;
     }
 
@@ -84,4 +82,6 @@ public class Material {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 }
