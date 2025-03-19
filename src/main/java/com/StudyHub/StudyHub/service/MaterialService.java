@@ -9,6 +9,6 @@ public interface MaterialService {
     Optional<Material> getMaterialById(Long id);
     List<Material> getAllMaterials();
     Material updateMaterial(Long id, Material material);
-    void deleteMaterial(Long id);
+    boolean deleteMaterial(Long id);
 }
 

@@ -44,11 +44,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(Long id) {
+    public boolean deleteCategory(Long id) {
         if (!categoryRepository.existsById(id)) {
             throw new IllegalArgumentException("Category not found with id: " + id);
         }
         categoryRepository.deleteById(id);
+        return false;
     }
 }
 

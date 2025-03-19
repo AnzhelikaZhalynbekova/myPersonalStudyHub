@@ -44,10 +44,11 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public void deleteMaterial(Long id) {
+    public boolean deleteMaterial(Long id) {
         if (!materialRepository.existsById(id)) {
             throw new IllegalArgumentException("Material not found with id: " + id);
         }
         materialRepository.deleteById(id);
+        return false;
     }
 }

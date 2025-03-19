@@ -9,5 +9,5 @@ public interface CategoryService {
     Optional<Category> getCategoryById(Long id);
     List<Category> getAllCategories();
     Category updateCategory(Long id, Category category);
-    void deleteCategory(Long id);
+    boolean deleteCategory(Long id);
 }

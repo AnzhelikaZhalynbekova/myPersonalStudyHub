@@ -44,10 +44,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void deleteReview(Long id) {
+    public boolean deleteReview(Long id) {
         if (!reviewRepository.existsById(id)) {
             throw new IllegalArgumentException("Review not found with id: " + id);
         }
         reviewRepository.deleteById(id);
+        return false;
     }
 }

@@ -9,5 +9,5 @@ public interface ReviewService {
     Optional<Review> getReviewById(Long id);
     List<Review> getAllReviews();
     Review updateReview(Long id, Review review);
-    void deleteReview(Long id);
+    boolean deleteReview(Long id);
 }
