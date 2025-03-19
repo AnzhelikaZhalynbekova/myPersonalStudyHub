@@ -1,20 +1,25 @@
 package com.StudyHub.StudyHub.mapper;
 
-import com.StudyHub.StudyHub.model.Category;
 import com.StudyHub.StudyHub.dto.CategoryDTO;
+import com.StudyHub.StudyHub.model.Category;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryMapperTest {
 
+    private final CategoryMapper categoryMapper = Mappers.getMapper(CategoryMapper.class);
+
     @Test
     public void testToCategoryDTO() {
         // Arrange
-        Category category = new Category("Test Category");
+        Category category = new Category();
         category.setId(1L);
+        category.setName("Test Category");
 
         // Act
-        CategoryDTO categoryDTO = CategoryMapper.toCategoryDTO(category);
+        CategoryDTO categoryDTO = categoryMapper.toDto(category);
 
         // Assert
         assertNotNull(categoryDTO);
@@ -28,7 +33,7 @@ public class CategoryMapperTest {
         CategoryDTO categoryDTO = new CategoryDTO(1L, "Test Category");
 
         // Act
-        Category category = CategoryMapper.toCategory(categoryDTO);
+        Category category = categoryMapper.toEntity(categoryDTO);
 
         // Assert
         assertNotNull(category);
@@ -38,19 +43,11 @@ public class CategoryMapperTest {
 
     @Test
     public void testToCategoryDTO_Null() {
-        // Act
-        CategoryDTO categoryDTO = CategoryMapper.toCategoryDTO(null);
-
-        // Assert
-        assertNull(categoryDTO);
+        assertNull(categoryMapper.toDto(null));
     }
 
     @Test
     public void testToCategory_Null() {
-        // Act
-        Category category = CategoryMapper.toCategory(null);
-
-        // Assert
-        assertNull(category);
+        assertNull(categoryMapper.toEntity(null));
     }
 }

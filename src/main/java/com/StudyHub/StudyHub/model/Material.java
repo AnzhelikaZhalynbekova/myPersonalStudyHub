@@ -2,6 +2,8 @@ package com.StudyHub.StudyHub.model;
 
 
 import jakarta.persistence.*;
+import lombok.Setter;
+
 import java.util.List;
 
 
@@ -17,6 +19,7 @@ public class Material {
     private String title;
     private String description;
     private String author;
+    @Setter
     private String fileUrl;
 
     @ManyToOne
@@ -69,11 +72,10 @@ public class Material {
         this.author = author;
     }
 
-    public String getUrl() { return fileUrl; }
+    public String getFileUrl() { return fileUrl; }
 
-    public void setUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
-    }
+
+    public void setFileUrl(String fileUrl) {this.fileUrl = fileUrl;}
 
     public Category getCategory() {
         return category;

@@ -9,8 +9,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String user_name;
-    private String text;
+    private String username;
+    private String content;
     private int rating;
 
     @ManyToOne
@@ -20,9 +20,9 @@ public class Review {
     public Review() {
     }
 
-    public Review(String user_name, String text, int rating, Material material) {
-        this.user_name = user_name;
-        this.text = text;
+    public Review(String username, String content, int rating, Material material) {
+        this.username = username;
+        this.content = content;
         this.rating = rating;
         this.material = material;
     }
@@ -37,19 +37,19 @@ public class Review {
     }
 
     public String getUsername() {
-        return user_name;
+        return username;
     }
 
-    public void setUsername(String user) {
-        this.user_name = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getText() {
-        return text;
+    public String getContent() {
+        return content;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getRating() {
