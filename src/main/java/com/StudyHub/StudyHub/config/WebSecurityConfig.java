@@ -1,6 +1,8 @@
 package com.StudyHub.StudyHub.config;
 
 import com.StudyHub.StudyHub.security.CustomUserDetailsService;
+import com.StudyHub.StudyHub.security.JwtAuthenticationFilter;
+import com.StudyHub.StudyHub.config.JwtUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class WebSecurityConfig {
@@ -22,23 +25,38 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // отключаем CSRF для упрощения (потом можно включить с настройками)
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/register", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // регистрация и доки открыты
-                        .anyRequest().authenticated() // остальные требуют авторизации
+                        .requestMatchers(
+                                "/api/users/register",
+                                "/api/auth/login",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
+
                 .userDetailsService(userDetailsService)
-                .httpBasic(basic -> {}); // базовая HTTP аутентификация (заменим на JWT позже)
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // шифрование паролей
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter(jwtUtil(), userDetailsService);
     }
 
-    // Для получения AuthenticationManager (нужно для аутентификации)
+    @Bean
+    public JwtUtil jwtUtil() {
+        return new JwtUtil();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
