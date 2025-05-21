@@ -2,10 +2,11 @@ package com.StudyHub.StudyHub.controller;
 
 import com.StudyHub.StudyHub.config.JwtUtil;
 import com.StudyHub.StudyHub.model.RefreshToken;
-import com.StudyHub.StudyHub.payload.TokenRefreshRequest;
-import com.StudyHub.StudyHub.payload.TokenRefreshResponse;
+import com.StudyHub.StudyHub.dto.auth.TokenRefreshRequest;
+import com.StudyHub.StudyHub.dto.auth.TokenRefreshResponse;
 import com.StudyHub.StudyHub.service.RefreshTokenService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +22,7 @@ public class RefreshTokenController {
     }
 
     @PostMapping("/refresh")
-    public TokenRefreshResponse refreshToken(@Valid @RequestBody TokenRefreshRequest request) {
+    public ResponseEntity<?> refreshToken(@Valid @RequestBody TokenRefreshRequest request) {
         String requestRefreshToken = request.getRefreshToken();
 
         RefreshToken refreshToken = refreshTokenService.findByToken(requestRefreshToken)
@@ -31,7 +32,6 @@ public class RefreshTokenController {
 
         String newAccessToken = jwtUtil.generateToken(refreshToken.getUsername());
 
-
-        return new TokenRefreshResponse(newAccessToken, requestRefreshToken);
+        return ResponseEntity.ok(new TokenRefreshResponse(newAccessToken, requestRefreshToken));
     }
 }

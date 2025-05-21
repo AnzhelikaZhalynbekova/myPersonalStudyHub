@@ -1,4 +1,4 @@
-package com.StudyHub.StudyHub.payload;
+package com.StudyHub.StudyHub.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 

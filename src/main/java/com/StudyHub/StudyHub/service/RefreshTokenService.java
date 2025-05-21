@@ -28,12 +28,10 @@ public class RefreshTokenService {
         return refreshTokenRepository.save(token);
     }
 
-    // Вот этот метод нужен, чтобы найти RefreshToken по строковому токену
     public Optional<RefreshToken> findByToken(String token) {
         return refreshTokenRepository.findByToken(token);
     }
 
-    // Проверка истечения срока действия токена
     public RefreshToken verifyExpiration(RefreshToken token) {
         if (token.getExpiryDate().isBefore(Instant.now())) {
             refreshTokenRepository.delete(token);
@@ -42,14 +40,12 @@ public class RefreshTokenService {
         return token;
     }
 
-    // Проверка валидности токена (можно использовать вместо verifyExpiration)
     public boolean validateToken(String token) {
         return refreshTokenRepository.findByToken(token)
                 .map(rt -> rt.getExpiryDate().isAfter(Instant.now()))
                 .orElse(false);
     }
 
-    // Получить username из токена
     public String getUsernameFromToken(String token) {
         return refreshTokenRepository.findByToken(token)
                 .map(RefreshToken::getUsername)

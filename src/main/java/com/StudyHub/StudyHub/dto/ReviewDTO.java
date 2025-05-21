@@ -1,6 +1,6 @@
 package com.StudyHub.StudyHub.dto;
 
-public class ReviewDTO {
+public class    ReviewDTO {
     private Long id;
     private String username;
     private String content;
