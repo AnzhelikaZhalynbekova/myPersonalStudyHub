@@ -2,7 +2,7 @@ package com.StudyHub.StudyHub.config;
 
 import com.StudyHub.StudyHub.security.CustomUserDetailsService;
 import com.StudyHub.StudyHub.security.JwtAuthenticationFilter;
-import com.StudyHub.StudyHub.config.JwtUtil;
+import com.StudyHub.StudyHub.security.JwtUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

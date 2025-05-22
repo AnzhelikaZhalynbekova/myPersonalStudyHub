@@ -1,6 +1,5 @@
 package com.StudyHub.StudyHub.security;
 
-import com.StudyHub.StudyHub.config.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

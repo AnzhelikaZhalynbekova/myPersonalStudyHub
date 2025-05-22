@@ -1,6 +1,6 @@
 package com.StudyHub.StudyHub.controller;
 
-import com.StudyHub.StudyHub.config.JwtUtil;
+import com.StudyHub.StudyHub.security.JwtUtil;
 import com.StudyHub.StudyHub.model.RefreshToken;
 import com.StudyHub.StudyHub.dto.auth.TokenRefreshRequest;
 import com.StudyHub.StudyHub.dto.auth.TokenRefreshResponse;

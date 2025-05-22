@@ -1,4 +1,4 @@
-package com.StudyHub.StudyHub.config;
+package com.StudyHub.StudyHub.security;
 
 
 import io.jsonwebtoken.*;

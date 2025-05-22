@@ -1,35 +1,32 @@
 package com.StudyHub.StudyHub.dto.auth;
 
+import java.util.Set;
+
 public class UserResponseDTO {
+
     private Long id;
-    private String username;
     private String email;
-    private boolean emailVerified;
+    private String fullName;
+    private Set<String> roles;
 
-    public UserResponseDTO() {}
-
-    public UserResponseDTO(Long id, String username, String email, boolean emailVerified) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.emailVerified = emailVerified;
+    // Конструкторы
+    public UserResponseDTO() {
     }
 
-    // Getters and Setters
+    public UserResponseDTO(Long id, String email, String fullName, String role) {
+        this.id = id;
+        this.email = email;
+        this.fullName = fullName;
+        this.roles = roles;
+    }
+
+    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -40,11 +37,19 @@ public class UserResponseDTO {
         this.email = email;
     }
 
-    public boolean isEmailVerified() {
-        return emailVerified;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setEmailVerified(boolean emailVerified) {
-        this.emailVerified = emailVerified;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getRole() {
+        return roles.toString();
+    }
+
+    public void setRole(String role) {
+        this.roles = roles;
     }
 }

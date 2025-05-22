@@ -1,27 +1,33 @@
 package com.StudyHub.StudyHub.dto.auth;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class UserRegistrationDTO {
-    private String username;
+
+    @Email(message = "Email должен быть валидным")
+    @NotBlank(message = "Email обязателен")
     private String email;
+
+    @NotBlank(message = "Пароль обязателен")
+    @Size(min = 6, message = "Пароль должен быть не менее 6 символов")
     private String password;
 
-    public UserRegistrationDTO() {}
+    @NotBlank(message = "Полное имя обязательно")
+    private String fullName;
 
-    public UserRegistrationDTO(String username, String email, String password) {
-        this.username = username;
+    // Конструкторы
+    public UserRegistrationDTO() {
+    }
+
+    public UserRegistrationDTO(String email, String password, String fullName) {
         this.email = email;
         this.password = password;
+        this.fullName = fullName;
     }
 
-    // Getters and Setters
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    // Геттеры и сеттеры
     public String getEmail() {
         return email;
     }
@@ -37,5 +43,12 @@ public class UserRegistrationDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+}
